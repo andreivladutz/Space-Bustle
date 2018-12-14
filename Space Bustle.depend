@@ -1,0 +1,507 @@
+# depslib dependency file v1.0
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\cdc.cpp
+	<CDC.cpp>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\cdc.cpp
+	"Platform.h"
+	"USBAPI.h"
+	<avr/wdt.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\platform.h
+	<inttypes.h>
+	<avr/pgmspace.h>
+	<avr/eeprom.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	"Arduino.h"
+	"USBDesc.h"
+	"USBCore.h"
+	"USBAPI.h"
+
+1371033102 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\arduino.h
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<avr/pgmspace.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	"binary.h"
+	"WCharacter.h"
+	"WString.h"
+	"HardwareSerial.h"
+	"pins_arduino.h"
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\binary.h
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\wcharacter.h
+	<ctype.h>
+
+1371033134 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\wstring.h
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<avr/pgmspace.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\hardwareserial.h
+	<inttypes.h>
+	"Stream.h"
+	"USBAPI.h"
+
+1371032830 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\stream.h
+	<inttypes.h>
+	"Print.h"
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\print.h
+	<inttypes.h>
+	<stdio.h>
+	"WString.h"
+	"Printable.h"
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\printable.h
+	<new.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\new.h
+	<stdlib.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\usbapi.h
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\variants\standard\pins_arduino.h
+	<avr/pgmspace.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\usbdesc.h
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\usbcore.h
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\hardwareserial.cpp
+	<HardwareSerial.cpp>
+
+1371032792 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\hardwareserial.cpp
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<inttypes.h>
+	"Arduino.h"
+	"wiring_private.h"
+	"HardwareSerial.h"
+
+1371033126 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\wiring_private.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<stdio.h>
+	<stdarg.h>
+	"Arduino.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\hid.cpp
+	<HID.cpp>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\hid.cpp
+	"Platform.h"
+	"USBAPI.h"
+	"USBDesc.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\ipaddress.cpp
+	<IPAddress.cpp>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\ipaddress.cpp
+	<Arduino.h>
+	<IPAddress.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\ipaddress.h
+	<Printable.h>
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\main.cpp
+	<main.cpp>
+
+1371032820 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\main.cpp
+	<Arduino.h>
+	<stdio.h>
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\new.cpp
+	<new.cpp>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\new.cpp
+	<new.h>
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\print.cpp
+	<Print.cpp>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\print.cpp
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"Arduino.h"
+	"Print.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\stream.cpp
+	<Stream.cpp>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\stream.cpp
+	"Arduino.h"
+	"Stream.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\tone.cpp
+	<Tone.cpp>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\tone.cpp
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	"Arduino.h"
+	"pins_arduino.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\usbcore.cpp
+	<USBCore.cpp>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\usbcore.cpp
+	"Platform.h"
+	"USBAPI.h"
+	"USBDesc.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\winterrupts.c
+	<WInterrupts.c>
+
+1371032848 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\winterrupts.c
+	<inttypes.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	<stdio.h>
+	"wiring_private.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\wiring.c
+	<wiring.c>
+
+1371032872 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\wiring.c
+	"wiring_private.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\wiring_analog.c
+	<wiring_analog.c>
+
+1371032880 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\wiring_analog.c
+	"wiring_private.h"
+	"pins_arduino.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\wiring_digital.c
+	<wiring_digital.c>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\wiring_digital.c
+	"wiring_private.h"
+	"pins_arduino.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\wiring_pulse.c
+	<wiring_pulse.c>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\wiring_pulse.c
+	"wiring_private.h"
+	"pins_arduino.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\wiring_shift.c
+	<wiring_shift.c>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\wiring_shift.c
+	"wiring_private.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\wmath.cpp
+	<WMath.cpp>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\wmath.cpp
+	"stdlib.h"
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\cores\wstring.cpp
+	<WString.cpp>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\wstring.cpp
+	"WString.h"
+
+1430126884 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\ledcontrol.cpp
+	"LedControl.h"
+
+1430126884 e:\03_facultate\anul doi\sem 1\robotica\space bustle\ledcontrol.h
+	<avr/pgmspace.h>
+	<Arduino.h>
+	<WProgram.h>
+
+1514140574 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\libraries\libraries.cpp
+	<Arduino.h>
+	"EEPROM.cpp"
+	"Ethernet.cpp"
+	"EthernetClient.cpp"
+	"EthernetServer.cpp"
+	"EthernetUdp.cpp"
+	"Firmata.cpp"
+	"LiquidCrystal.cpp"
+	"LCD4884.cpp"
+	"OBD.cpp"
+	"SD.cpp"
+	"Sd2Card.cpp"
+	"SdFile.cpp"
+	"SdVolume.cpp"
+	"File.cpp"
+	"Servo.cpp"
+	"SoftwareSerial.cpp"
+	"SPI.cpp"
+	"stepper.cpp"
+	"TinyGPS.cpp"
+	"Wire.cpp"
+	"twi.c"
+
+1355115030 c:\program files (x86)\codeblocks\arduino\libraries\eeprom\eeprom.cpp
+	<avr/eeprom.h>
+	"Arduino.h"
+	"EEPROM.h"
+
+1355115030 c:\program files (x86)\codeblocks\arduino\libraries\eeprom\eeprom.h
+	<inttypes.h>
+
+1371032498 c:\program files (x86)\codeblocks\arduino\libraries\ethernet\ethernet.cpp
+	"w5100.h"
+	"Ethernet.h"
+	"Dhcp.h"
+
+1355115030 c:\program files (x86)\codeblocks\arduino\libraries\ethernet\ethernet.h
+	<inttypes.h>
+	"IPAddress.h"
+	"EthernetClient.h"
+	"EthernetServer.h"
+	"Dhcp.h"
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\ethernet\ethernetclient.h
+	"Arduino.h"
+	"Print.h"
+	"Client.h"
+	"IPAddress.h"
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\client.h
+	"Print.h"
+	"Stream.h"
+	"IPAddress.h"
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\ethernet\ethernetserver.h
+	"Server.h"
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\server.h
+
+1355115030 c:\program files (x86)\codeblocks\arduino\libraries\ethernet\dhcp.h
+	"EthernetUdp.h"
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\ethernet\ethernetudp.h
+	<Udp.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\cores\arduino\udp.h
+	<Stream.h>
+	<IPAddress.h>
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\ethernet\ethernetclient.cpp
+	"w5100.h"
+	"socket.h"
+	"string.h"
+	"Arduino.h"
+	"Ethernet.h"
+	"EthernetClient.h"
+	"EthernetServer.h"
+	"Dns.h"
+
+1355115030 c:\program files (x86)\codeblocks\arduino\libraries\ethernet\dns.h
+	<EthernetUdp.h>
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\ethernet\ethernetserver.cpp
+	"w5100.h"
+	"socket.h"
+	"string.h"
+	"Ethernet.h"
+	"EthernetClient.h"
+	"EthernetServer.h"
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\ethernet\ethernetudp.cpp
+	"w5100.h"
+	"socket.h"
+	"Ethernet.h"
+	"Udp.h"
+	"Dns.h"
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\firmata\firmata.cpp
+	"Firmata.h"
+	"HardwareSerial.h"
+	<string.h>
+	<stdlib.h>
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\firmata\firmata.h
+	"Boards.h"
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\firmata\boards.h
+	<inttypes.h>
+	"Arduino.h"
+	"WProgram.h"
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\liquidcrystal\liquidcrystal.cpp
+	"LiquidCrystal.h"
+	<stdio.h>
+	<string.h>
+	<inttypes.h>
+	"Arduino.h"
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\liquidcrystal\liquidcrystal.h
+	<inttypes.h>
+	"Print.h"
+
+1403788842 c:\program files (x86)\codeblocks\arduino\libraries\obd\obd.cpp
+	<Arduino.h>
+	"OBD.h"
+	<Wire.h>
+
+1402028774 c:\program files (x86)\codeblocks\arduino\libraries\obd\obd.h
+	<Arduino.h>
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\wire\wire.h
+	<inttypes.h>
+	"Stream.h"
+
+1362986950 c:\program files (x86)\codeblocks\arduino\libraries\sd\sd.cpp
+	"SD.h"
+
+1362986950 c:\program files (x86)\codeblocks\arduino\libraries\sd\sd.h
+	<Arduino.h>
+	<utility/SdFat.h>
+	<utility/SdFatUtil.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\libraries\sd\utility\sdfat.h
+	<avr/pgmspace.h>
+	"Sd2Card.h"
+	"FatStructs.h"
+	"Print.h"
+
+1372665678 c:\program files (x86)\codeblocks\arduino\libraries\sd\utility\sd2card.h
+	"Sd2PinMap.h"
+	"SdInfo.h"
+
+1377530236 c:\program files (x86)\codeblocks\arduino\libraries\sd\utility\sd2pinmap.h
+	<avr/io.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\libraries\sd\utility\sdinfo.h
+	<stdint.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\libraries\sd\utility\fatstructs.h
+
+1362986950 c:\program files (x86)\codeblocks\arduino\libraries\sd\utility\sdfatutil.h
+	<Arduino.h>
+	<avr/pgmspace.h>
+
+1377528768 c:\program files (x86)\codeblocks\arduino\libraries\sd\utility\sd2card.cpp
+	<Arduino.h>
+	"Sd2Card.h"
+
+1362986950 c:\program files (x86)\codeblocks\arduino\libraries\sd\utility\sdfile.cpp
+	<SdFat.h>
+	<avr/pgmspace.h>
+	<Arduino.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\libraries\sd\utility\sdvolume.cpp
+	<SdFat.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\libraries\sd\file.cpp
+	<SD.h>
+
+1371033208 c:\program files (x86)\codeblocks\arduino\libraries\servo\servo.cpp
+	<avr/interrupt.h>
+	<Arduino.h>
+	"Servo.h"
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\servo\servo.h
+	<inttypes.h>
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\softwareserial\softwareserial.cpp
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	<Arduino.h>
+	<SoftwareSerial.h>
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\softwareserial\softwareserial.h
+	<inttypes.h>
+	<Stream.h>
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\spi\spi.cpp
+	"pins_arduino.h"
+	"SPI.h"
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\spi\spi.h
+	<stdio.h>
+	<Arduino.h>
+	<avr/pgmspace.h>
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\stepper\stepper.cpp
+	"Arduino.h"
+	"Stepper.h"
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\stepper\stepper.h
+
+1391012219 c:\program files (x86)\codeblocks\arduino\libraries\tinygps\tinygps.cpp
+	"TinyGPS.h"
+
+1391012219 c:\program files (x86)\codeblocks\arduino\libraries\tinygps\tinygps.h
+	"Arduino.h"
+	"WProgram.h"
+
+1355115032 c:\program files (x86)\codeblocks\arduino\libraries\wire\wire.cpp
+	<stdlib.h>
+	<string.h>
+	<inttypes.h>
+	"twi.h"
+	"Wire.h"
+
+1355115034 c:\program files (x86)\codeblocks\arduino\libraries\wire\utility\twi.h
+	<inttypes.h>
+
+1371032644 c:\program files (x86)\codeblocks\arduino\libraries\wire\utility\twi.c
+	<math.h>
+	<stdlib.h>
+	<inttypes.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	<compat/twi.h>
+	"Arduino.h"
+	"pins_arduino.h"
+	"twi.h"
+
+1544819091 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\game.cpp
+	<Arduino.h>
+	"Actor.h"
+	"screenRenderer.h"
+	"controlInterface.h"
+	"entityArray.h"
+
+1544601484 e:\03_facultate\anul doi\sem 1\robotica\space bustle\screenrenderer.h
+	"LedControl.h"
+
+1322479934 c:\program files (x86)\codeblocks\ardusim\arduino\cores\new.cpp
+	<new.h>
+
+1361429300 c:\program files (x86)\codeblocks\ardusim\arduino\cores\new.h
+	<stdlib.h>
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\variants\micro\pins_arduino.h
+	"../leonardo/pins_arduino.h"
+
+1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\variants\leonardo\pins_arduino.h
+	<avr/pgmspace.h>
+
+1544608277 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\screenrenderer.cpp
+	"screenRenderer.h"
+
+1544694198 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\controlinterface.cpp
+	"controlInterface.h"
+
+1544693556 e:\03_facultate\anul doi\sem 1\robotica\space bustle\controlinterface.h
+	<Arduino.h>
+
+1544691142 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\actor.cpp
+	"Actor.h"
+
+1544691149 e:\03_facultate\anul doi\sem 1\robotica\space bustle\actor.h
+	"screenRenderer.h"
+
+1544819131 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\entityarray.cpp
+	"entityArray.h"
+
+1544814634 e:\03_facultate\anul doi\sem 1\robotica\space bustle\entityarray.h
+	"Actor.h"
+
