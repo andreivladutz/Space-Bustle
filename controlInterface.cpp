@@ -18,7 +18,7 @@ void ControlInterface :: updateState() {
 }
 
 int ControlInterface :: getDeltaX() {
-    static unsigned long long last_return_time = 0;
+    static unsigned long last_return_time = 0;
 
     if (deltaX >= MOVE_ERROR || deltaX <= -MOVE_ERROR) {
         if (millis() - last_return_time >= DELTA_TIME) {
@@ -35,7 +35,7 @@ int ControlInterface :: getDeltaX() {
     return JOYSTICK_NOMOVE;
 }
 int ControlInterface :: getDeltaY() {
-    static unsigned long long last_return_time = 0;
+    static unsigned long last_return_time = 0;
 
     if (deltaY >= MOVE_ERROR || deltaY <= -MOVE_ERROR) {
         if (millis() - last_return_time >= DELTA_TIME) {
@@ -55,6 +55,6 @@ int ControlInterface :: getDeltaY() {
 /*
     if pressed, the button goes in LOW state
 */
-void ControlInterface :: setClickListener(void (*func)()) {
+void ControlInterface :: setJoystickClickListener(void (*func)()) {
     attachInterrupt(SW_INTERRUPT_ID, func, FALLING);
 }

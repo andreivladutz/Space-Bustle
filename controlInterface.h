@@ -45,7 +45,7 @@ public :
     int getDeltaY();
 
     //set a function to be called on interrupt caused by button press
-    void setClickListener(void (*)());
+    void setJoystickClickListener(void (*)());
 
 };
 

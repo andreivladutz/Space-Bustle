@@ -1,7 +1,10 @@
 #ifndef ACTOR_H_INCLUDED
 #define ACTOR_H_INCLUDED
 
-#include "screenRenderer.h"
+#include "entityArray.h"
+#include <Arduino.h>
+
+//class EntityArray;
 
 class ScreenRenderer;
 
@@ -45,6 +48,12 @@ const int ENEMY2[3][3] = {
     ENEMY2_LEFTX = 0, ENEMY2_RIGHTX = 2,
     ENEMY2_BOTTOMY = 0;
 
+const int METEOR[3][3] = {
+    { 1, 1, 0 },
+    { 1, 1, 0 },
+    { 0, 0, 0 }
+}, METEOR_TOPX = 1, METEOR_TOPY = 1;
+
 //the way one entity is taking
 #define DOWN -1
 #define UP 1
@@ -61,7 +70,13 @@ const int ENEMY2[3][3] = {
 #define MIDDLE_X 1
 #define MIDDLE_Y 1
 
-enum MOVEMENT {AUTO_MOVEMENT, MOVED_LEFT, MOVED_RIGHT, MOVED_UP, MOVED_DOWN};
+#define OUT_OF_BOUNDS true
+#define IN_BOUNDS !OUT_OF_BOUNDS
+
+enum MOVEMENT {NO_MOVEMENT, AUTO_MOVEMENT, MOVED_LEFT, MOVED_RIGHT, MOVED_UP, MOVED_DOWN};
+
+class Bullet;
+class Enemy;
 
 class Entity {
 protected :
@@ -74,12 +89,12 @@ protected :
     int direction;
     int speed;
 
-    //listener to call when entity goes out of the game board
-    //like deleting the entity to free memory -> "this" will be passed
-    void (*outOfBoundsListener)(const Entity*);
     //if setExpr is true we show the shape
     //else we clear it
-    void toggleShape(ScreenRenderer &, bool setExpr);
+    virtual void toggleShape(ScreenRenderer &, bool setExpr);
+    //protected constructor for the Bullet class to call
+    //the shape array becomes useless so we don't initialize it
+    Entity(int dir, int pX, int pY);
 public :
     //defining the shape and the direction, the current position
     //on the game board and the coords of the "head"
@@ -87,23 +102,41 @@ public :
 
     //drawing the shape on the game board
     void drawShape(ScreenRenderer &);
+    void clearShape(ScreenRenderer &);
 
     //for Entities we have automatic movement
-    virtual void updatePosition(ScreenRenderer &, MOVEMENT whichWay = AUTO_MOVEMENT);
+    virtual bool updatePosition(ScreenRenderer &, MOVEMENT whichWay = AUTO_MOVEMENT);
 
     void setPosX(int);
     void setPosY(int);
 
     void setSpeed(int);
 
-    bool isColliding(Entity&);
+    virtual bool isColliding(Entity&);
 
-    //set the out of bounds listener
-    void setOutOfBoundsListener(void (*)(const Entity*));
+    virtual ~Entity() {}
+
+    friend class Bullet;
+    friend class Enemy;
+};
+
+/*
+    if we check collision with a bullet
+    the bullet has to be on the left-hand
+    side of the isColliding call
+*/
+class Bullet : public Entity {
+protected :
+    void toggleShape(ScreenRenderer &, bool setExpr);
+public :
+    Bullet(int dir, int pX, int pY);
+    bool isColliding(Entity&);
 };
 
 #define BLEED_TIME 1000
 #define ONE_BLEED 200
+
+#define BULLET_GENERATION_INTERVAL 300
 
 class Actor : public Entity {
 protected :
@@ -112,6 +145,15 @@ protected :
     //to check collision with the border
     int bottomY, leftX, rightX;
     bool bleeding;
+
+    EntityArray bulletsArr;
+
+    //flags for the bleeding effect
+    bool lastShown, startedBleeding;
+
+    //FOR TIMERS
+    unsigned long bullet_time,
+        blink_time, bleed_time;
 public :
     Actor(const int [3][3], int dir, int pX, int pY, int tX, int tY, int lX, int rX, int bY, int life);
     /*
@@ -129,9 +171,20 @@ public :
 
     //toggling the shape on and off. useful for animating bleeding on Actors
     void blinkShape(ScreenRenderer &);
+    void drawShape(ScreenRenderer &sR);
+
+    bool updatePosition(ScreenRenderer &, MOVEMENT whichWay);
 
     int getLife();
+
+    void generateBullet();
+    void drawBullets(ScreenRenderer &sR);
+    void updateBullets(ScreenRenderer &sR);
+
+    void draw(ScreenRenderer &);
 };
+
+class Enemy;
 
 #define PLAYER_HEALTH 10
 
@@ -140,7 +193,36 @@ class Player : public Actor {
 public :
     Player(const int [3][3], int dir, int pX, int pY, int tX, int tY, int lX, int rX, int bY, int life);
 
-    void updatePosition(ScreenRenderer &, MOVEMENT whichWay);
-} ;
+    /*
+        the update function updates both the bullets
+        and the position of the player
+    */
+    void update(ScreenRenderer &, MOVEMENT whichWay, Enemy *currEnemy, EntityArray *meteors);
+
+    /*
+        the player updatePosition verifies collision with the current enemy if there is one, else
+                checks collision with spawned meteors and calls Actor :: updatePosition
+    */
+    void updatePosition(ScreenRenderer &, MOVEMENT whichWay, Enemy *currEnemy, EntityArray *meteors);
+
+    /*
+        checks collision with currEnemy or walks through the meteors array checking collision
+    */
+    void updateBullets(ScreenRenderer &, Enemy *currEnemy, EntityArray *meteors);
+};
+
+#define ENEMY_HEALTH 3
+
+#define FOLLOW_DELTA_TIME 1000
+
+class Enemy : public Actor {
+    Player &mainPlayer;
+public :
+    Enemy(Player&, const int [3][3], int dir, int pX, int pY, int tX, int tY, int lX, int rX, int bY, int life);
+
+    bool updatePosition(ScreenRenderer &, MOVEMENT whichWay = AUTO_MOVEMENT);
+    void updateBullets(ScreenRenderer &sR);
+    void update(ScreenRenderer &sR);
+};
 
 #endif // ACTOR_H_INCLUDED
