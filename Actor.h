@@ -28,6 +28,9 @@ const int MAIN[3][3] = {
       1 1 1
         1
 */
+
+#define NO_OF_ENEMIES 2
+
 const int ENEMY1[3][3] = {
     { 1, 1, 1 },
     { 0, 1, 0},
@@ -156,6 +159,7 @@ protected :
         blink_time, bleed_time;
 public :
     Actor(const int [3][3], int dir, int pX, int pY, int tX, int tY, int lX, int rX, int bY, int life);
+    ~Actor();
     /*
         caused by collision -> damage is taken so we "bleed"
         life is decremented and we set set bleeding flag which will cause
@@ -179,6 +183,7 @@ public :
 
     void generateBullet();
     void drawBullets(ScreenRenderer &sR);
+    void clearBullets(ScreenRenderer &sR);
     void updateBullets(ScreenRenderer &sR);
 
     void draw(ScreenRenderer &);

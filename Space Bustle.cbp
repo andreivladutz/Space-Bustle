@@ -623,6 +623,16 @@
 			<Option target="Arduino Uno" />
 		</Unit>
 		<Unit filename="game.cpp" />
+		<Unit filename="gameInstance.cpp">
+			<Option target="Simulator - Debug" />
+			<Option target="Simulator - Release" />
+			<Option target="Arduino Uno" />
+		</Unit>
+		<Unit filename="gameInstance.h">
+			<Option target="Simulator - Debug" />
+			<Option target="Simulator - Release" />
+			<Option target="Arduino Uno" />
+		</Unit>
 		<Unit filename="libraries/libraries.cpp" />
 		<Unit filename="screenRenderer.cpp">
 			<Option target="Simulator - Debug" />

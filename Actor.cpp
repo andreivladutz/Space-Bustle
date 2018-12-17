@@ -115,7 +115,13 @@ void Bullet :: toggleShape(ScreenRenderer &sR, bool setExpr) {
 
 Actor :: Actor(const int init_shape[3][3], int dir, int pX, int pY, int tX, int tY, int lX, int rX, int bY, int life)
         : Entity(init_shape, dir, pX, pY, tX, tY), life(life), bottomY(bY), leftX(lX), rightX(rX), lastShown(true),
-        startedBleeding(false), bullet_time(0), blink_time(0), bleed_time(0){}
+        startedBleeding(false), bullet_time(0), blink_time(0), bleed_time(0) {}
+
+Actor :: ~Actor() {
+    for (int i = bulletsArr.getSize() - 1; i >= 0; i--) {
+        bulletsArr.remove(i);
+    }
+}
 
 //the function keeps track of its last display value (show or hide)
 //and changes it once the desired delay time (of ONE_BLEED) has passed
@@ -183,6 +189,13 @@ void Actor :: generateBullet() {
 void Actor :: drawBullets(ScreenRenderer &sR) {
     for (int i = bulletsArr.getSize() - 1; i >= 0 ; i--) {
             bulletsArr[i].drawShape(sR);
+    }
+}
+
+
+void Actor :: clearBullets(ScreenRenderer &sR) {
+    for (int i = bulletsArr.getSize() - 1; i >= 0; i--) {
+        bulletsArr[i].clearShape(sR);
     }
 }
 
