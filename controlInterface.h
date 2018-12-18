@@ -8,6 +8,9 @@
 #define SW_PIN 2
 #define SW_INTERRUPT_ID 0
 
+#define GAME_BUTTON_PIN 3
+#define GAME_BUTTON_INTERRUPT_ID 1
+
 /*
     deltaX negative => right
     deltaX positive => left
@@ -44,8 +47,10 @@ public :
     int getDeltaX();
     int getDeltaY();
 
-    //set a function to be called on interrupt caused by button press
+    //set a function to be called on interrupt caused by joystick press
     void setJoystickClickListener(void (*)());
+    //set a function to be called on interrupt caused by game button press
+    void setGameButtonClickListener(void (*)());
 
 };
 

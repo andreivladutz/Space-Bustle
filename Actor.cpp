@@ -167,6 +167,10 @@ int Actor :: getLife() {
     return life;
 }
 
+void Actor :: setLife(int newLife) {
+    life = newLife;
+}
+
 void Actor :: drawShape(ScreenRenderer &sR) {
     if (isBleeding())
         blinkShape(sR);

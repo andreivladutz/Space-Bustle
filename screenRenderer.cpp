@@ -1,17 +1,52 @@
 #include "screenRenderer.h"
 
+//small function to show a reversed number on the LCD
+unsigned long reverseUnsigned(unsigned long no) {
+    int reversed = 0;
+
+    while (no) {
+        reversed = reversed * 10 + no % 10;
+        no /= 10;
+    }
+
+    return reversed;
+}
+
+uint8_t heart[8] = {
+    B11011,
+    B11111,
+    B11111,
+    B01110,
+    B00100,
+    B00000,
+    B00000,
+};
+
 /*
     init constants
     set the matrix on 0
     initialize the LedControl
 */
 ScreenRenderer :: ScreenRenderer() : LINES(8), COLS(8), DRIVER_ADDR(0),
-        lc(DIN_PIN, CLK_PIN, LOAD_PIN, NO_DRIVERS) {
+        lc(DIN_PIN, CLK_PIN, LOAD_PIN, NO_DRIVERS),
+        LCD(LCD_RS, LCD_ENABLE, LCD_DB4, LCD_DB5, LCD_DB6, LCD_DB7)
+{
     for (int i = 0; i < LINES; i++)
         rows[i] = B00000000;
     lc.shutdown(DRIVER_ADDR, false); // turn off power saving, enables display
     lc.setIntensity(DRIVER_ADDR, 8); // sets brightness (0~15 possible values)
+
+    LCD.createChar(HEART_SYMBOL, heart);
+    LCD.begin(LCD_NO_COLS, LCD_NO_ROWS);
+    LCD.clear();
+
+    pinMode(V0_PIN, OUTPUT);
+    analogWrite(V0_PIN, LCD_CONTRAST);
 }
+
+/*********************************
+ *   METHODS FOR THE LED MATRIX  *
+ ********************************/
 
 void ScreenRenderer :: updateScreen() {
     for (int i = 0; i < LINES; i++)
@@ -57,4 +92,78 @@ int ScreenRenderer :: getLines() {
 
 int ScreenRenderer :: getCols() {
     return COLS;
+}
+
+/**************************
+ *   METHODS FOR THE LCD  *
+ *************************/
+
+void ScreenRenderer :: LCDUpdate(int life, byte level, unsigned long score) {
+    static int last_life = 0;
+    static byte last_level = 0;
+    static unsigned long last_score = 1;
+
+    if (life != last_life) {
+        last_life = life;
+        LCDPrintLives(life);
+    }
+    if (level != last_level) {
+        last_level = level;
+        LCDPrintLevel(level);
+    }
+    if (score != last_score) {
+        last_score = score;
+        LCDPrintScore(score);
+    }
+}
+
+void ScreenRenderer :: LCDForcedUpdate(int life, byte level, unsigned long score) {
+    LCD.clear();
+    LCDPrintLives(life);
+    LCDPrintLevel(level);
+    LCDPrintScore(score);
+}
+
+void ScreenRenderer :: LCDPrintLives(int life) {
+    LCD.setCursor(0, LIVES_ROW);
+
+    //clear row
+    for (int i = 0; i < LCD_NO_COLS; i++)
+        LCD.write(' ');
+
+    //center Lives display
+    LCD.setCursor((LCD_NO_COLS - life) / 2, LIVES_ROW);
+
+    for (int i = 0; i < life; i++)
+        LCD.write(HEART_SYMBOL);
+}
+
+void ScreenRenderer :: LCDPrintLevel(byte level) {
+    LCD.setCursor(LEVEL_COL, LEVEL_SCORE_ROW);
+    LCD.print("LVL:");
+    LCD.print(level);
+}
+
+void ScreenRenderer :: LCDPrintScore(unsigned long score) {
+    LCD.rightToLeft();
+    LCD.setCursor(SCORE_COL, LEVEL_SCORE_ROW);
+
+    //REVERSING ALL OUTPUT SO IT PRINTS WELL
+    LCD.print(reverseUnsigned(score));
+    LCD.print(":RCS");
+
+    LCD.leftToRight();
+}
+
+void ScreenRenderer :: LCDPrintMessage(const char *txt) {
+    LCD.clear();
+    LCD.print(txt);
+}
+
+void ScreenRenderer :: LCDPrintMultiLineMessage(const char *line1, const char *line2) {
+    LCD.clear();
+    LCD.print(line1);
+
+    LCD.setCursor(0, 1);
+    LCD.print(line2);
 }

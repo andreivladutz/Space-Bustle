@@ -25,6 +25,14 @@
 #define INITIAL_PLAYERX 4
 #define INITIAL_PLAYERY 5
 #define INITIAL_METEORY 0
+#define INITIAL_ENEMYY 1
+
+#define ENEMY_DEFEAT_SCORE 10
+
+#define SECOND 1000
+
+#define NO_METSHOW_PAUSE_TIME_USED 1
+#define METSHOW_PAUSE_TIME_USED 3
 
 class GameInstance {
     ScreenRenderer scrRend;
@@ -33,11 +41,15 @@ class GameInstance {
     Enemy *enmy;
     EntityArray meteorsArr;
 
-    unsigned long meteorShowerDuration, meteorSpawnTime, bulletSpawnTime, showerStartTime;
+    unsigned long meteorShowerDuration, meteorSpawnTime, bulletSpawnTime, showerStartTime, score;
+    volatile unsigned long pauseStartTime, pauseTime;
 
-    byte gameState, lastGameState, level, speed;
+    volatile byte gameState, lastGameState;
+    byte level, speed, pauseTimeUsed;
 public :
     GameInstance();
+
+    void reinitGame();
 
     //all drawing and position updating logic
     void update();
@@ -62,6 +74,12 @@ public :
     //doing cleanup and initializing
     void checkGameState();
     void increaseLevel();
+    void increaseScore();
+    void resetPauseTime();
+
+    //interrupt function has to change game state
+    //and the pause timers
+    friend void onGameButtonPress();
 };
 
 

@@ -4,6 +4,8 @@ ControlInterface :: ControlInterface() {
     pinMode(VRx_PIN, INPUT);
     pinMode(VRy_PIN, INPUT);
     pinMode(SW_PIN, INPUT_PULLUP);
+
+    pinMode(GAME_BUTTON_PIN, INPUT);
 }
 
 /*
@@ -53,8 +55,15 @@ int ControlInterface :: getDeltaY() {
 }
 
 /*
-    if pressed, the button goes in LOW state
+    if pressed, the joystick button goes in LOW state
 */
 void ControlInterface :: setJoystickClickListener(void (*func)()) {
     attachInterrupt(SW_INTERRUPT_ID, func, FALLING);
+}
+
+/*
+    if pressed, the game button goes in HIGH state
+*/
+void ControlInterface :: setGameButtonClickListener(void (*func)()) {
+    attachInterrupt(GAME_BUTTON_INTERRUPT_ID, func, RISING);
 }

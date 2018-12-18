@@ -5,7 +5,7 @@
 		<Option title="Space Bustle" />
 		<Option pch_mode="2" />
 		<Option compiler="avr-gcc" />
-		<Option virtualFolders="LedControl\;" />
+		<Option virtualFolders="LedControl\;LiquidCrystal\;" />
 		<Build>
 			<Target title="Simulator - Debug">
 				<Option output="Space Bustle.exe" prefix_auto="1" extension_auto="0" />
@@ -575,6 +575,12 @@
 		</Unit>
 		<Unit filename="LedControl.h">
 			<Option virtualFolder="LedControl/" />
+		</Unit>
+		<Unit filename="LiquidCrystal.cpp">
+			<Option virtualFolder="LiquidCrystal/" />
+		</Unit>
+		<Unit filename="LiquidCrystal.h">
+			<Option virtualFolder="LiquidCrystal/" />
 		</Unit>
 		<Unit filename="controlInterface.cpp">
 			<Option target="Arduino Uno" />

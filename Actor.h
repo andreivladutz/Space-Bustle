@@ -180,6 +180,7 @@ public :
     bool updatePosition(ScreenRenderer &, MOVEMENT whichWay);
 
     int getLife();
+    void setLife(int);
 
     void generateBullet();
     void drawBullets(ScreenRenderer &sR);

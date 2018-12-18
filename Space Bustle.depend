@@ -466,8 +466,9 @@
 	<Arduino.h>
 	"gameInstance.h"
 
-1544601484 e:\03_facultate\anul doi\sem 1\robotica\space bustle\screenrenderer.h
+1545113515 e:\03_facultate\anul doi\sem 1\robotica\space bustle\screenrenderer.h
 	"LedControl.h"
+	"LiquidCrystal.h"
 
 1322479934 c:\program files (x86)\codeblocks\ardusim\arduino\cores\new.cpp
 	<new.h>
@@ -481,20 +482,20 @@
 1362986950 c:\program files (x86)\codeblocks\arduino\hardware\arduino\variants\leonardo\pins_arduino.h
 	<avr/pgmspace.h>
 
-1544608277 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\screenrenderer.cpp
+1545114086 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\screenrenderer.cpp
 	"screenRenderer.h"
 
-1544893479 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\controlinterface.cpp
+1545106975 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\controlinterface.cpp
 	"controlInterface.h"
 
-1544893249 e:\03_facultate\anul doi\sem 1\robotica\space bustle\controlinterface.h
+1545106842 e:\03_facultate\anul doi\sem 1\robotica\space bustle\controlinterface.h
 	<Arduino.h>
 
-1545019269 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\actor.cpp
+1545111422 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\actor.cpp
 	"Actor.h"
 	"screenRenderer.h"
 
-1545019159 e:\03_facultate\anul doi\sem 1\robotica\space bustle\actor.h
+1545111427 e:\03_facultate\anul doi\sem 1\robotica\space bustle\actor.h
 	"entityArray.h"
 	<Arduino.h>
 
@@ -504,12 +505,30 @@
 
 1544891330 e:\03_facultate\anul doi\sem 1\robotica\space bustle\entityarray.h
 
-1545024824 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\gameinstance.cpp
+1545114220 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\gameinstance.cpp
 	"gameInstance.h"
 
-1545024528 e:\03_facultate\anul doi\sem 1\robotica\space bustle\gameinstance.h
+1545111649 e:\03_facultate\anul doi\sem 1\robotica\space bustle\gameinstance.h
 	"Actor.h"
 	"screenRenderer.h"
 	"controlInterface.h"
 	"entityArray.h"
+
+1545077336 e:\03_facultate\anul doi\sem 1\robotica\space bustle\liquidcrystal.h
+	<inttypes.h>
+	"Print.h"
+
+1545077336 e:\03_facultate\anul doi\sem 1\robotica\space bustle\liquidcrystal.cpp
+	"LiquidCrystal.h"
+	<stdio.h>
+	<string.h>
+	<inttypes.h>
+	"Arduino.h"
+
+1545077336 source:e:\03_facultate\anul doi\sem 1\robotica\space bustle\liquidcrystal.cpp
+	"LiquidCrystal.h"
+	<stdio.h>
+	<string.h>
+	<inttypes.h>
+	"Arduino.h"
 

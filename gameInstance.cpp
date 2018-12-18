@@ -2,7 +2,7 @@
 
 GameInstance *thisInstance;
 
-void onButtonPress() {
+void onJoystickPress() {
     static unsigned long last_call_time = millis();
 
     if (millis() - last_call_time >= DELTA_TIME) {
@@ -11,15 +11,76 @@ void onButtonPress() {
     }
 }
 
+void onGameButtonPress() {
+    static unsigned long last_call_time = 0;
+
+    if (millis() - last_call_time >= DELTA_TIME * 3) {
+        last_call_time = millis();
+
+        //resuming game
+        if (thisInstance->gameState == GAME_PAUSED) {
+            thisInstance->pauseTime = millis() - thisInstance->pauseStartTime;
+
+            thisInstance->gameState = thisInstance->lastGameState;
+            thisInstance->scrRend.LCDForcedUpdate(
+                                                  thisInstance->plyr.getLife(),
+                                                  thisInstance->level,
+                                                  thisInstance->score
+                                                  );
+        }
+        else if (thisInstance->gameState == GAME_OVER) {
+            thisInstance->reinitGame();
+        }
+        //pausing game
+        else {
+            thisInstance->pauseStartTime = millis();
+            thisInstance->lastGameState = thisInstance->gameState;
+
+            thisInstance->gameState = GAME_PAUSED;
+            thisInstance->scrRend.LCDPrintMultiLineMessage("GAME PAUSE.PRESS", "BUTTON TO RESUME");
+        }
+    }
+}
+
+/*******************************************
+ *   GAME INITIALISING AND REINITIALISING  *
+ ******************************************/
+
 GameInstance :: GameInstance()
         : plyr(MAIN, UP, INITIAL_PLAYERX, INITIAL_PLAYERY, MAIN_TOPX, MAIN_TOPY, MAIN_LEFTX, MAIN_RIGHTX, MAIN_BOTTOMY, PLAYER_HEALTH),
         enmy(NULL), meteorShowerDuration(LEVEL1_METEOR_SHOWER), meteorSpawnTime(LEVEL1_METEOR_SPAWN), bulletSpawnTime(LEVEL1_BULLET_SPAWN),
-        showerStartTime(millis()), gameState(METEOR_SHOWER), lastGameState(METEOR_SHOWER), level(1), speed(CONSTANT_SPEED)
+        showerStartTime(millis()), score(0), pauseStartTime(0), pauseTime(0),
+        gameState(GAME_PAUSED), lastGameState(METEOR_SHOWER), level(1), speed(CONSTANT_SPEED), pauseTimeUsed(0)
 {
     randomSeed(analogRead(0));
 
     thisInstance = this;
-    cI.setJoystickClickListener(onButtonPress);
+    cI.setJoystickClickListener(onJoystickPress);
+    cI.setGameButtonClickListener(onGameButtonPress);
+
+    scrRend.LCDPrintMultiLineMessage("PRESS BUTTON TO", "   BEGIN GAME");
+}
+
+void GameInstance :: reinitGame() {
+    deleteEnemy();
+    deleteMeteors();
+
+    plyr.setPosX(INITIAL_PLAYERX);
+    plyr.setPosY(INITIAL_PLAYERY);
+    plyr.setLife(PLAYER_HEALTH);
+
+    meteorShowerDuration = LEVEL1_METEOR_SHOWER;
+    meteorSpawnTime = LEVEL1_METEOR_SPAWN;
+    bulletSpawnTime = LEVEL1_BULLET_SPAWN;
+    showerStartTime = millis();
+    score = 0;
+    pauseStartTime = 0;
+    pauseTime = 0;
+    gameState = METEOR_SHOWER;
+    lastGameState = METEOR_SHOWER;
+    level = 1;
+    speed = CONSTANT_SPEED;
+    pauseTimeUsed = 0;
 }
 
 /*******************************
@@ -27,28 +88,47 @@ GameInstance :: GameInstance()
  ******************************/
 
 void GameInstance :: update() {
+    static bool last_drew = false;
+    static unsigned long last_draw_time;
+
     checkGameState();
 
     if (gameState == GAME_PAUSED || gameState == GAME_OVER)
         return;
 
-    drawGameObjects();
+    increaseScore();
+    resetPauseTime();
 
-    scrRend.updateScreen();
-    delay(UPDATE_INTERVAL);
+    if (!last_drew) {
+        last_draw_time = millis();
+        last_drew = true;
 
-    updateGameObjects();
+        drawGameObjects();
+
+        scrRend.updateScreen();
+        scrRend.LCDUpdate(plyr.getLife(), level, score);
+    }
+
+    if (last_drew && millis() - last_draw_time >= UPDATE_INTERVAL) {
+        last_drew = false;
+
+        updateGameObjects();
+    }
+
 }
 
 void GameInstance :: checkGameState() {
-    if (plyr.getLife() <= 0) {
+    if (gameState != GAME_OVER && plyr.getLife() <= 0) {
         gameState = GAME_OVER;
         deleteEnemy();
         deleteMeteors();
+
+        scrRend.LCDPrintMessage("GAME OVER.RETRY?");
     }
 
     //if we defeated the enemy we increase the level and difficulty
     else if (gameState == ENEMY_FIGHT && enmy->getLife() <= 0) {
+        score += ENEMY_DEFEAT_SCORE * level;
         deleteEnemy();
 
         gameState = METEOR_SHOWER;
@@ -56,7 +136,12 @@ void GameInstance :: checkGameState() {
         showerStartTime = millis();
     }
 
-    else if (gameState == METEOR_SHOWER && millis() - showerStartTime >= meteorShowerDuration) {
+    else if (gameState == METEOR_SHOWER && (millis() - pauseTime) - showerStartTime >= meteorShowerDuration) {
+        if (pauseTime) {
+            showerStartTime += pauseTime;
+            pauseTimeUsed++;
+        }
+
         gameState = ENEMY_FIGHT;
 
         deleteMeteors();
@@ -67,14 +152,38 @@ void GameInstance :: checkGameState() {
 void GameInstance :: increaseLevel() {
     level++;
 
-    meteorShowerDuration *= level;
+    meteorShowerDuration += SECOND * level;
 
     bulletSpawnTime -= BULLET_SPAWN_DECREASE_TIME * level;
     meteorShowerDuration -= METEOR_SPAWN_DECREASE_TIME * level;
 
     //we increase speed every two levels
+    //with a slow growing function
     if (level % SPEED_INCREASE_LEVEL_INTERVAL == 0)
-        speed *= (level - 1);
+        speed = CONSTANT_SPEED * sqrt(level - 1);
+}
+
+void GameInstance :: increaseScore() {
+    static unsigned long last_increased = 0;
+
+    if ((millis() - pauseTime) - last_increased >= 3 * SECOND) {
+        if (pauseTime)
+            pauseTimeUsed++;
+        last_increased = millis();
+        score++;
+    }
+}
+
+//if pauseTime is greater than 0 and we used it already then reset
+void GameInstance :: resetPauseTime() {
+    if (pauseTime) {
+        //pause time used once in increaseScore() function
+        if (gameState != METEOR_SHOWER && pauseTimeUsed >= NO_METSHOW_PAUSE_TIME_USED)
+            pauseTime = 0;
+        //pause time used three times : in increaseScore(), generateMeteor() and
+        if (gameState == METEOR_SHOWER && pauseTimeUsed >= METSHOW_PAUSE_TIME_USED)
+            pauseTime = 0;
+    }
 }
 
 /*******************************
@@ -197,8 +306,11 @@ void GameInstance :: deleteMeteors() {
 void GameInstance :: generateMeteor() {
     static unsigned long last_spawn_time = 0;
 
-    if (millis() - last_spawn_time >= meteorSpawnTime) {
+    if ((millis() - pauseTime) - last_spawn_time >= meteorSpawnTime) {
         last_spawn_time = millis();
+
+        if (pauseTime)
+            pauseTimeUsed++;
 
         byte randCoordX = random(1, MAX_X);
 
@@ -211,14 +323,14 @@ void GameInstance :: generateMeteor() {
 }
 
 void GameInstance :: generateEnemy() {
-    byte randNumber = random(1, NO_OF_ENEMIES + 1);
+    byte randNumber = random(1, NO_OF_ENEMIES + 1), randomPosX = random(1, MAX_X - 1);
 
     if (randNumber == 1)
         enmy = new
-            Enemy(plyr, ENEMY1, DOWN, 2, 1, ENEMY1_TOPX, ENEMY1_TOPY, ENEMY1_LEFTX, ENEMY1_RIGHTX, ENEMY1_BOTTOMY, ENEMY_HEALTH);
+            Enemy(plyr, ENEMY1, DOWN, randomPosX, INITIAL_ENEMYY, ENEMY1_TOPX, ENEMY1_TOPY, ENEMY1_LEFTX, ENEMY1_RIGHTX, ENEMY1_BOTTOMY, ENEMY_HEALTH);
     if (randNumber == NO_OF_ENEMIES)
         enmy = new
-            Enemy(plyr, ENEMY2, DOWN, 2, 1, ENEMY2_TOPX, ENEMY2_TOPY, ENEMY2_LEFTX, ENEMY2_RIGHTX, ENEMY2_BOTTOMY, ENEMY_HEALTH);
+            Enemy(plyr, ENEMY2, DOWN, randomPosX, INITIAL_ENEMYY, ENEMY2_TOPX, ENEMY2_TOPY, ENEMY2_LEFTX, ENEMY2_RIGHTX, ENEMY2_BOTTOMY, ENEMY_HEALTH);
 
     enmy->setSpeed(speed);
 }
