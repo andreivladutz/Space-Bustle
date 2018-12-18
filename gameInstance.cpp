@@ -108,7 +108,7 @@ void GameInstance :: update() {
         return;
 
     increaseScore();
-
+plyr.setLife(10);
     if (!last_drew) {
         last_draw_time = millis();
         last_drew = true;
@@ -160,8 +160,10 @@ void GameInstance :: increaseLevel() {
 
     meteorShowerDuration += SECOND * level;
 
-    bulletSpawnTime -= BULLET_SPAWN_DECREASE_TIME * level;
-    meteorShowerDuration -= METEOR_SPAWN_DECREASE_TIME * level;
+    if (bulletSpawnTime < BULLET_SPAWN_DECREASE_TIME * level)
+        bulletSpawnTime = MIN_BULLET_SPAWN_TIME;
+    else
+        bulletSpawnTime = bulletSpawnTime - BULLET_SPAWN_DECREASE_TIME;
 
     //we increase speed every two levels
     //with a slow growing function
