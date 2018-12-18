@@ -31,8 +31,7 @@
 
 #define SECOND 1000
 
-#define NO_METSHOW_PAUSE_TIME_USED 1
-#define METSHOW_PAUSE_TIME_USED 3
+#define SCORE_PAUSE_TIME_USED 1
 
 class GameInstance {
     ScreenRenderer scrRend;
@@ -41,7 +40,8 @@ class GameInstance {
     Enemy *enmy;
     EntityArray meteorsArr;
 
-    unsigned long meteorShowerDuration, meteorSpawnTime, bulletSpawnTime, showerStartTime, score;
+    unsigned long meteorShowerDuration, meteorSpawnTime, bulletSpawnTime, showerStartTime,
+            meteor_time, bullet_time, score;
     volatile unsigned long pauseStartTime, pauseTime;
 
     volatile byte gameState, lastGameState;

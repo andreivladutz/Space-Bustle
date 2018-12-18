@@ -2,14 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Arduino Uno" />
-	<File name="screenRenderer.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="LedControl.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="678" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="entityArray.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="222" topLine="0" />
+			<Cursor1 position="3901" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="LedControl.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -17,44 +12,36 @@
 			<Cursor1 position="1469" topLine="23" />
 		</Cursor>
 	</File>
+	<File name="screenRenderer.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1358" topLine="35" />
+		</Cursor>
+	</File>
+	<File name="screenRenderer.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3912" topLine="25" />
+		</Cursor>
+		<Folding>
+			<Collapse line="119" />
+			<Collapse line="126" />
+			<Collapse line="140" />
+			<Collapse line="146" />
+			<Collapse line="157" />
+		</Folding>
+	</File>
 	<File name="Actor.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3864" topLine="101" />
+			<Cursor1 position="5467" topLine="155" />
 		</Cursor>
 	</File>
-	<File name="gameInstance.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Actor.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="293" topLine="2" />
-		</Cursor>
-	</File>
-	<File name="game.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="gameInstance.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1155" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="screenRenderer.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="590" topLine="19" />
+			<Cursor1 position="4518" topLine="170" />
 		</Cursor>
 	</File>
 	<File name="controlInterface.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="978" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="LedControl.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3901" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="controlInterface.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="434" topLine="9" />
+			<Cursor1 position="1650" topLine="18" />
 		</Cursor>
 	</File>
 	<File name="entityArray.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -62,9 +49,29 @@
 			<Cursor1 position="66" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Actor.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="game.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3673" topLine="164" />
+			<Cursor1 position="6" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="controlInterface.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1426" topLine="30" />
+		</Cursor>
+	</File>
+	<File name="entityArray.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="222" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="gameInstance.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3019" topLine="312" />
+		</Cursor>
+	</File>
+	<File name="gameInstance.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="268" topLine="12" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

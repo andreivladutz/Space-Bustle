@@ -21,6 +21,8 @@ void onGameButtonPress() {
         if (thisInstance->gameState == GAME_PAUSED) {
             thisInstance->pauseTime = millis() - thisInstance->pauseStartTime;
 
+            thisInstance->showerStartTime += thisInstance->pauseTime;
+
             thisInstance->gameState = thisInstance->lastGameState;
             thisInstance->scrRend.LCDForcedUpdate(
                                                   thisInstance->plyr.getLife(),
@@ -36,6 +38,10 @@ void onGameButtonPress() {
             thisInstance->pauseStartTime = millis();
             thisInstance->lastGameState = thisInstance->gameState;
 
+            //reinit time so it doesn't spawn bullets/meteors instantly after resume
+            thisInstance->bullet_time = millis();
+            thisInstance->meteor_time = millis();
+
             thisInstance->gameState = GAME_PAUSED;
             thisInstance->scrRend.LCDPrintMultiLineMessage("GAME PAUSE.PRESS", "BUTTON TO RESUME");
         }
@@ -48,8 +54,8 @@ void onGameButtonPress() {
 
 GameInstance :: GameInstance()
         : plyr(MAIN, UP, INITIAL_PLAYERX, INITIAL_PLAYERY, MAIN_TOPX, MAIN_TOPY, MAIN_LEFTX, MAIN_RIGHTX, MAIN_BOTTOMY, PLAYER_HEALTH),
-        enmy(NULL), meteorShowerDuration(LEVEL1_METEOR_SHOWER), meteorSpawnTime(LEVEL1_METEOR_SPAWN), bulletSpawnTime(LEVEL1_BULLET_SPAWN),
-        showerStartTime(millis()), score(0), pauseStartTime(0), pauseTime(0),
+        enmy(NULL), meteorShowerDuration(LEVEL1_METEOR_SHOWER), meteorSpawnTime(LEVEL1_METEOR_SPAWN),
+        bulletSpawnTime(LEVEL1_BULLET_SPAWN), showerStartTime(millis()), meteor_time(0), bullet_time(0), score(0), pauseStartTime(0), pauseTime(0),
         gameState(GAME_PAUSED), lastGameState(METEOR_SHOWER), level(1), speed(CONSTANT_SPEED), pauseTimeUsed(0)
 {
     randomSeed(analogRead(0));
@@ -65,6 +71,7 @@ void GameInstance :: reinitGame() {
     deleteEnemy();
     deleteMeteors();
 
+    plyr.clearShape(scrRend);
     plyr.setPosX(INITIAL_PLAYERX);
     plyr.setPosY(INITIAL_PLAYERY);
     plyr.setLife(PLAYER_HEALTH);
@@ -81,6 +88,10 @@ void GameInstance :: reinitGame() {
     level = 1;
     speed = CONSTANT_SPEED;
     pauseTimeUsed = 0;
+
+    meteor_time = millis();
+
+    scrRend.LCDForcedUpdate(plyr.getLife(), level, score);
 }
 
 /*******************************
@@ -136,12 +147,7 @@ void GameInstance :: checkGameState() {
         showerStartTime = millis();
     }
 
-    else if (gameState == METEOR_SHOWER && (millis() - pauseTime) - showerStartTime >= meteorShowerDuration) {
-        if (pauseTime) {
-            showerStartTime += pauseTime;
-            pauseTimeUsed++;
-        }
-
+    else if (gameState == METEOR_SHOWER && millis() - showerStartTime >= meteorShowerDuration) {
         gameState = ENEMY_FIGHT;
 
         deleteMeteors();
@@ -178,10 +184,7 @@ void GameInstance :: increaseScore() {
 void GameInstance :: resetPauseTime() {
     if (pauseTime) {
         //pause time used once in increaseScore() function
-        if (gameState != METEOR_SHOWER && pauseTimeUsed >= NO_METSHOW_PAUSE_TIME_USED)
-            pauseTime = 0;
-        //pause time used three times : in increaseScore(), generateMeteor() and
-        if (gameState == METEOR_SHOWER && pauseTimeUsed >= METSHOW_PAUSE_TIME_USED)
+        if (gameState != METEOR_SHOWER && pauseTimeUsed >= SCORE_PAUSE_TIME_USED)
             pauseTime = 0;
     }
 }
@@ -278,8 +281,6 @@ void GameInstance :: playerGenerateBullet() {
 }
 
 void GameInstance :: enemyGenerateBullet() {
-    static unsigned long bullet_time = 0;
-
     if (millis() - bullet_time >= bulletSpawnTime) {
         bullet_time = millis();
         enmy->generateBullet();
@@ -304,13 +305,8 @@ void GameInstance :: deleteMeteors() {
 }
 
 void GameInstance :: generateMeteor() {
-    static unsigned long last_spawn_time = 0;
-
-    if ((millis() - pauseTime) - last_spawn_time >= meteorSpawnTime) {
-        last_spawn_time = millis();
-
-        if (pauseTime)
-            pauseTimeUsed++;
+    if (millis() - meteor_time >= meteorSpawnTime) {
+        meteor_time = millis();
 
         byte randCoordX = random(1, MAX_X);
 
@@ -333,4 +329,6 @@ void GameInstance :: generateEnemy() {
             Enemy(plyr, ENEMY2, DOWN, randomPosX, INITIAL_ENEMYY, ENEMY2_TOPX, ENEMY2_TOPY, ENEMY2_LEFTX, ENEMY2_RIGHTX, ENEMY2_BOTTOMY, ENEMY_HEALTH);
 
     enmy->setSpeed(speed);
+
+    bullet_time = millis();
 }
