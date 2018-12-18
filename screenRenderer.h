@@ -49,12 +49,12 @@ public :
     int getLines();
     int getCols();
 
-    void LCDUpdate(int life, byte level, unsigned long score);
-    void LCDForcedUpdate(int life, byte level, unsigned long score);
+    void LCDUpdate(int life, byte level, int score);
+    void LCDForcedUpdate(int life, byte level, int score);
 
     void LCDPrintLives(int);
     void LCDPrintLevel(byte);
-    void LCDPrintScore(unsigned long);
+    void LCDPrintScore(int);
     void LCDPrintMessage(const char*);
     void LCDPrintMultiLineMessage(const char*, const char*);
 };

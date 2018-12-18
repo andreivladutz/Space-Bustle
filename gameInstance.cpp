@@ -108,7 +108,6 @@ void GameInstance :: update() {
         return;
 
     increaseScore();
-    resetPauseTime();
 
     if (!last_drew) {
         last_draw_time = millis();
@@ -135,6 +134,7 @@ void GameInstance :: checkGameState() {
         deleteMeteors();
 
         scrRend.LCDPrintMessage("GAME OVER.RETRY?");
+        scrRend.LCDPrintScore(score);
     }
 
     //if we defeated the enemy we increase the level and difficulty
@@ -166,26 +166,15 @@ void GameInstance :: increaseLevel() {
     //we increase speed every two levels
     //with a slow growing function
     if (level % SPEED_INCREASE_LEVEL_INTERVAL == 0)
-        speed = CONSTANT_SPEED * sqrt(level - 1);
+        speed = max(int(CONSTANT_SPEED * sqrt(level)), CONSTANT_SPEED);
 }
 
 void GameInstance :: increaseScore() {
     static unsigned long last_increased = 0;
 
-    if ((millis() - pauseTime) - last_increased >= 3 * SECOND) {
-        if (pauseTime)
-            pauseTimeUsed++;
+    if (millis() - last_increased >= 3 * SECOND) {
         last_increased = millis();
         score++;
-    }
-}
-
-//if pauseTime is greater than 0 and we used it already then reset
-void GameInstance :: resetPauseTime() {
-    if (pauseTime) {
-        //pause time used once in increaseScore() function
-        if (gameState != METEOR_SHOWER && pauseTimeUsed >= SCORE_PAUSE_TIME_USED)
-            pauseTime = 0;
     }
 }
 

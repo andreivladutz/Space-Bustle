@@ -41,7 +41,8 @@ class GameInstance {
     EntityArray meteorsArr;
 
     unsigned long meteorShowerDuration, meteorSpawnTime, bulletSpawnTime, showerStartTime,
-            meteor_time, bullet_time, score;
+            meteor_time, bullet_time;
+    int score;
     volatile unsigned long pauseStartTime, pauseTime;
 
     volatile byte gameState, lastGameState;
@@ -75,7 +76,6 @@ public :
     void checkGameState();
     void increaseLevel();
     void increaseScore();
-    void resetPauseTime();
 
     //interrupt function has to change game state
     //and the pause timers

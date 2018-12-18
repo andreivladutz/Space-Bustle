@@ -1,7 +1,7 @@
 #include "screenRenderer.h"
 
 //small function to show a reversed number on the LCD
-unsigned long reverseUnsigned(unsigned long no) {
+int reverseInt(int no) {
     int reversed = 0;
 
     while (no) {
@@ -98,10 +98,10 @@ int ScreenRenderer :: getCols() {
  *   METHODS FOR THE LCD  *
  *************************/
 
-void ScreenRenderer :: LCDUpdate(int life, byte level, unsigned long score) {
+void ScreenRenderer :: LCDUpdate(int life, byte level, int score) {
     static int last_life = 0;
     static byte last_level = 0;
-    static unsigned long last_score = 1;
+    static int last_score = 1;
 
     if (life != last_life) {
         last_life = life;
@@ -117,7 +117,7 @@ void ScreenRenderer :: LCDUpdate(int life, byte level, unsigned long score) {
     }
 }
 
-void ScreenRenderer :: LCDForcedUpdate(int life, byte level, unsigned long score) {
+void ScreenRenderer :: LCDForcedUpdate(int life, byte level, int score) {
     LCD.clear();
     LCDPrintLives(life);
     LCDPrintLevel(level);
@@ -144,12 +144,24 @@ void ScreenRenderer :: LCDPrintLevel(byte level) {
     LCD.print(level);
 }
 
-void ScreenRenderer :: LCDPrintScore(unsigned long score) {
+void ScreenRenderer :: LCDPrintScore(int score) {
     LCD.rightToLeft();
     LCD.setCursor(SCORE_COL, LEVEL_SCORE_ROW);
+    LCD.print("         ");
+    LCD.setCursor(SCORE_COL, LEVEL_SCORE_ROW);
+
+    int alt_score = score;
+
+    //if score has some ending zeros we print those before
+    //printing the reversed number (which won't have leading zeros)
+    if (score != 0)
+        while (alt_score % 10 == 0) {
+            LCD.write('0');
+            alt_score /= 10;
+        }
 
     //REVERSING ALL OUTPUT SO IT PRINTS WELL
-    LCD.print(reverseUnsigned(score));
+    LCD.print(reverseInt(score));
     LCD.print(":RCS");
 
     LCD.leftToRight();
