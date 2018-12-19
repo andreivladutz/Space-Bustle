@@ -6,17 +6,17 @@ Space Bustle is an Arduino arcade game with spaceships, meteors, flying bad guys
 - 8x8 LED Matrix with MAX7219 driver<br/>
   *where the bustle happens*
 - LCD display<br/>
-  *used for displaying player lives, level and score*
+  *used for displaying player lives, level and score*<br/>
   *also used for telling you the game is paused or over (you've lost, duh)*
-- Joystick
+- Joystick<br/>
   *used for doging bullets, meteors, and all kinds of bad objects falling from the sky (a.k.a. controlling the main player :D)*
-- Button
+- Button<br/>
   *used for playing/pausing/restarting the game when u dead*
   
  ## The Code
  The code is split in multiple headers and cpp's each one with its own responsibility :
--**screenRenderer**
-  *this class is responsible for drawing pixels on the matrix, setting, clearing and all kinds of stuff*
+-**screenRenderer**<br/>
+  *this class is responsible for drawing pixels on the matrix, setting, clearing and all kinds of stuff*<br/>
   *also printing messages and heart characters on the LCD*
 -**controlInterface**
   *this class handles all the input -> the joystick, returning movement codes for left, right, up and down
