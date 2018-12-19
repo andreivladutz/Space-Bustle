@@ -1,11 +1,11 @@
 # Space-Bustle
 Space Bustle is an Arduino arcade game with spaceships, meteors, flying bad guys and a lot of ammunition to light up the dark skies of outer space.
 ## Setup
-- Arduino Uno
+- Arduino Uno<br/>
   *the microcontroller with the magic*
-- 8x8 LED Matrix with MAX7219 driver
+- 8x8 LED Matrix with MAX7219 driver<br/>
   *where the bustle happens*
-- LCD display
+- LCD display<br/>
   *used for displaying player lives, level and score*
   *also used for telling you the game is paused or over (you've lost, duh)*
 - Joystick
