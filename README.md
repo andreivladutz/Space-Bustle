@@ -23,12 +23,12 @@ Space Bustle is an Arduino arcade game with spaceships, meteors, flying bad guys
                                     -> joystick clicking, attaching an interrupt<br/>
                                     -> game button clicking, attaching an interrupt for it too*
 - **Actor**<br/>
-  *here we keep all the logic for our game objects, having a hierarchy of classes<br/>
+  *here we keep all the logic for our game objects, having a hierarchy of classes*<br/>
   ENTITY:point_right:BULLET<br/>
   :point_down:<br/>
   ACTOR:point_right:ENEMY<br/>
   :point_down:<br/>
-  PLAYER*<br/>
+  PLAYER<br/>
   <br/>
   - *Meteors objects will be of type ENTITY*
   - *Bullets will be of type BULLET*
@@ -41,6 +41,8 @@ Space Bustle is an Arduino arcade game with spaceships, meteors, flying bad guys
 - **gameInterface**<br/>
   *the guy that takes care of everything -> spawning the player, updating positions, checking collisions, pausing, restarting, dropping meteors out of the sky, trying to kill the player with tougher, faster, enemies, etcetera, etcetera.*<br/>
   <br/>
-The game has two playing states -> Meteor Shower which ends after a duration (this duration increases every level)<br/>
-                                -> Enemy Fight (it spawns a nice enemy, well, actually not that nice to the player) where the player has to dodge the enemy's bullets and defeat him (by shooting back, or, if crazy enough, colliding with him until it blows up)<br/>
+The game has two playing states <br/>
+-> Meteor Shower which ends after a duration (this duration increases every level)<br/>
+-> Enemy Fight (it spawns a nice enemy, well, actually not that nice to the player) where the player has to dodge the enemy's bullets and defeat him (by shooting back, or, if crazy enough, colliding with him until it blows up)<br/>
+<br/>
 Once an enemy is defeated you get a higher level, some nice rewarding score points and... you go again, this time with increased difficulty.<br/>
