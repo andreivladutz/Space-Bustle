@@ -46,3 +46,4 @@ The game has two playing states <br/>
 -> Enemy Fight (it spawns a nice enemy, well, actually not that nice to the player) where the player has to dodge the enemy's bullets and defeat him (by shooting back, or, if crazy enough, colliding with him until it blows up)<br/>
 <br/>
 Once an enemy is defeated you get a higher level, some nice rewarding score points and... you go again, this time with increased difficulty.<br/>
+[link to video](https://youtu.be/QpzEUyjG-nk)
