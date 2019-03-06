@@ -108,7 +108,7 @@ void GameInstance :: update() {
         return;
 
     increaseScore();
-plyr.setLife(10);
+
     if (!last_drew) {
         last_draw_time = millis();
         last_drew = true;
